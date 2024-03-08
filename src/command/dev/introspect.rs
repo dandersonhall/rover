@@ -116,7 +116,7 @@ impl SubgraphIntrospectRunner {
                 watch: false,
             },
         }
-        .exec(&self.client, false)
+        .exec(&self.client, true)
     }
 }
 
