@@ -109,10 +109,12 @@ impl GraphQLClient {
                         if let Some(hyper_error) =
                             get_source_error_type::<hyper::Error>(&client_error)
                         {
+                            println!("ERROR: {}", hyper_error);
                             if hyper_error.is_incomplete_message() {
                                 Err(BackoffError::transient(client_error))
                             } else {
                                 Err(BackoffError::Permanent(client_error))
+                                // Err(BackoffError::transient(client_error))
                             }
                         } else {
                             Err(BackoffError::Permanent(client_error))
